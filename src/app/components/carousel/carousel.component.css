@@ -1,0 +1,11 @@
+/* src/app/carousel/carousel.component.css */
+
+/* Opcional: Añade estilos para mejorar la apariencia de los botones */
+button:hover {
+    cursor: pointer;
+  }
+  
+  button:focus {
+    outline: none;
+  }
+  

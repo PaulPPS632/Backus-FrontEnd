@@ -1,0 +1,247 @@
+<div class="max-w-screen-xl mx-auto p-4">
+  <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 mb-10">
+    <div
+      class="bg-amarilli h-2.5 rounded-full transition-all duration-700"
+      [ngStyle]="ProgressStyle"
+    ></div>
+  </div>
+  <div class="flex flex-row flex-wrap justify-evenly">
+    <section
+      class="w-full relative overflow-hidden md:max-w-screen-sm h-96 transition-all"
+      [ngStyle]="EstiloContenedorDatos"
+    >
+      <!-- Container that slides -->
+      <div
+        class="flex transition-transform duration-500"
+        [ngStyle]="{ transform: 'translateX(-' + activeIndex * 100 + '%)' }"
+      >
+        <!-- Div 1 -->
+        <div class="w-full flex-shrink-0 flex flex-col gap-5 h-96">
+          <div class="flex flex-col flex-nowrap gap-2 h-80 overflow-y-auto">
+            @for (producto of productos; track $index) {
+            <app-cart-curso-item [producto]="producto" />
+            }
+          </div>
+          <br />
+          <div class="flex">
+            <button
+              (click)="ProcederCompletarDatos()"
+              class="flex-1 py-2 px-3 text-sm font-medium text-center text-gray-800 bg-amarilli rounded-lg hover:bg-amarillooscuro"
+            >
+              Complete Sus Datos
+            </button>
+          </div>
+        </div>
+
+        <!-- Div 2 -->
+        <div class="w-full flex-shrink-0 h-96">
+          <form #billingForm="ngForm">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+              <div class="mb-6">
+                <label
+                  for="editNombre"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >Nombres</label
+                >
+                <input
+                  type="text"
+                  id="editNombre"
+                  name="editNombre"
+                  [(ngModel)]="data.customer.billingDetails.firstName"
+                  #editNombre="ngModel"
+                  placeholder="Ingrese Nombres"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-teal-500 dark:focus:border-teal-500"
+                  required
+                />
+                <div
+                  *ngIf="editNombre.invalid && editNombre.touched"
+                  class="text-red-600 text-sm"
+                >
+                  Nombres es requerido
+                </div>
+              </div>
+              <div class="mb-6">
+                <label
+                  for="editApellido"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >Apellidos</label
+                >
+                <input
+                  type="text"
+                  id="editApellido"
+                  name="editApellido"
+                  [(ngModel)]="data.customer.billingDetails.lastName"
+                  #editApellido="ngModel"
+                  placeholder="Ingrese Apellidos"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-teal-500 dark:focus:border-teal-500"
+                  required
+                />
+                <div
+                  *ngIf="editApellido.invalid && editApellido.touched"
+                  class="text-red-600 text-sm"
+                >
+                  Apellidos es requerido
+                </div>
+              </div>
+              <div class="mb-6">
+                <label
+                  for="editAddress"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >Dirección</label
+                >
+                <input
+                  type="text"
+                  id="editAddress"
+                  name="editAddress"
+                  [(ngModel)]="data.customer.billingDetails.address"
+                  #editAddress="ngModel"
+                  placeholder="Ingrese Dirección"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-teal-500 dark:focus:border-teal-500"
+                  required
+                />
+                <div
+                  *ngIf="editAddress.invalid && editAddress.touched"
+                  class="text-red-600 text-sm"
+                >
+                  Dirección es requerido
+                </div>
+              </div>
+              <div class="mb-6">
+                <label
+                  for="editCelular"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >Celular</label
+                >
+                <input
+                  type="text"
+                  id="editCelular"
+                  name="editCelular"
+                  [(ngModel)]="data.customer.billingDetails.cellPhoneNumber"
+                  #editCelular="ngModel"
+                  placeholder="Número de Celular"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-teal-500 dark:focus:border-teal-500"
+                  required
+                />
+                <div
+                  *ngIf="editCelular.invalid && editCelular.touched"
+                  class="text-red-600 text-sm"
+                >
+                  Celular es requerido
+                </div>
+              </div>
+              <div class="mb-6">
+                <label
+                  for="editEmail"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >Email</label
+                >
+                <input
+                  type="email"
+                  id="editEmail"
+                  name="editEmail"
+                  [(ngModel)]="data.customer.email"
+                  #editEmail="ngModel"
+                  placeholder="ejemplo@gmail.com"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-teal-500 dark:focus:border-teal-500"
+                  required
+                />
+                <div
+                  *ngIf="editEmail.invalid && editEmail.touched"
+                  class="text-red-600 text-sm"
+                >
+                  Email es requerido
+                </div>
+              </div>
+              <div class="mb-6">
+                <label
+                  for="editDNI"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >DNI</label
+                >
+                <input
+                  type="text"
+                  id="editDNI"
+                  name="editDNI"
+                  [(ngModel)]="data.customer.billingDetails.identityCode"
+                  #editDNI="ngModel"
+                  placeholder="Ingrese DNI"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-teal-500 dark:focus:border-teal-500"
+                  required
+                />
+                <div
+                  *ngIf="editDNI.invalid && editDNI.touched"
+                  class="text-red-600 text-sm"
+                >
+                  DNI es requerido
+                </div>
+              </div>
+            </div>
+          </form>
+
+          <div class="flex gap-2">
+            <button
+              type="button"
+              (click)="RegresarCarrito()"
+              class="flex-1 py-2 px-3 text-sm font-medium text-gray-500 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
+            >
+              Regresar
+            </button>
+            <button
+              type="button"
+              (click)="ProcederPago()"
+              class="flex-1 py-2 px-3 text-sm font-medium text-center text-gray-800 rounded-lg bg-amarilli hover:bg-amarillooscuro"
+            >
+              Continuar
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container md:max-w-screen-sm" [ngStyle]="EstiloPasarella">
+      <h2 class="text-white text-xl font-semibold">
+        Generar el modal para pasarella de pago Izipay
+      </h2>
+      <button
+        type="button"
+        (click)="ProcesoPagoTarjeta()"
+        class="flex-1 py-2 px-3 w-full my-10 text-sm font-medium text-center text-gray-800 rounded-lg bg-amarilli hover:bg-amarillooscuro"
+      >
+        Generar Pago
+      </button>
+      <div id="myPaymentForm">
+        <div class="kr-smart-form" kr-popin></div>
+      </div>
+      <div data-test="payment-message">{{ message }}</div>
+    </div>
+    <section class="max-w-sm space-y-6 lg:mt-0 w-full">
+      <p class="text-xl font-semibold text-gray-900 dark:text-white">
+        Order de Compra
+      </p>
+
+      <div class="space-y-4">
+        <div class="space-y-2">
+          <dl class="flex items-center justify-between gap-4">
+            <dt class="text-base font-normal text-gray-400 dark:text-gray-400">
+              Precio Total
+            </dt>
+            <dd class="text-base text-white font-medium dark:text-white">
+              {{ precioTotal | currency : "S/. " }}
+            </dd>
+          </dl>
+        </div>
+
+        <dl
+          class="flex items-center justify-between gap-4 border-t border-gray-200 pt-2 dark:border-gray-700"
+        >
+          <dt class="text-base font-bold text-gray-900 dark:text-white">
+            Total
+          </dt>
+          <dd class="text-base font-bold text-gray-900 dark:text-white">
+            {{ precioTotal | currency : "S/. " }}
+          </dd>
+        </dl>
+      </div>
+    </section>
+  </div>
+</div>

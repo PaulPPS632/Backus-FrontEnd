@@ -1,0 +1,53 @@
+<div
+  class="w-[180px] h-72 p-2 md:p-4 m-auto md:w-52 md:h-80 flex flex-col justify-between rounded-lg bg-gray-100 shadow-sm dark:border-gray-700 dark:bg-gray-800 hover:scale-105 transition-all hover:cursor-pointer"
+>
+  <div
+    [routerLink]="['/producto', producto.id]"
+    class="w-full h-32 object-contain"
+  >
+    <img
+      class="mx-auto w-full h-32 object-cover dark:hidden rounded-lg"
+      [src]="producto.imagen_principal"
+      alt="imagen de Producto"
+    />
+  </div>
+
+  <div [routerLink]="['/producto', producto.id]" class="pt-6 flex-grow h-24">
+    <p
+      class="text-sm md:text-lg font-semibold leading-tight text-gray-900 dark:text-white hover:underline hover:cursor-pointer hover:text truncate"
+    >
+      {{ producto.nombre }}
+    </p>
+  </div>
+
+  <div
+    class="mt-2 md:mt-4 flex flex-row flex-nowrap justify-between items-center"
+  >
+    <div>S/. {{ producto.precio }}</div>
+    <div class="flex items-center justify-between">
+      <button
+        type="button"
+        (click)="Agregar()"
+        class="py-2 px-3 text-xs md:text-sm flex-1 flex items-center justify-center font-medium text-white bg-amarilli rounded-lg hover:bg-amarillooscuro focus:ring-4 focus:outline-none"
+      >
+        <svg
+          class="h-4 w-4 md:h-5 md:w-5"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 4h1.5L8 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm.75-3H7.5M11 7H6.312M17 4v6m-3-3h6"
+          />
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>

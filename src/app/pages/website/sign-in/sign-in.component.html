@@ -1,0 +1,182 @@
+<section class="bg-gray-900 dark:bg-gray-900">
+  <div class="flex flex-row items-center justify-center">
+    <div
+      class="w-full lg:max-w-xl my-32 space-y-8 sm:p-8 bg-gray-700 rounded-lg shadow-xl dark:bg-gray-800"
+    >
+      <form class="space-y-6">
+        <div>
+          <label for="user" class="block mb-2 text-sm font-medium text-white"
+            >Usuario</label
+          >
+          <input
+            type="user"
+            name="user"
+            id="user"
+            [(ngModel)]="UserNew.username"
+            class="bg-gray-300 text-gray-900 text-sm rounded-lg focus:ring-amarilli focus:border-amarilli block w-full p-2.5"
+            placeholder="usuario"
+            required
+          />
+        </div>
+        <div>
+          <label
+            for="password"
+            class="block mb-2 text-sm font-medium text-white"
+            >Contraseña</label
+          >
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="••••••••"
+            [(ngModel)]="UserNew.password"
+            class="bg-gray-300 text-gray-900 text-sm rounded-lg focus:ring-amarilli focus:border-amarilli block w-full p-2.5"
+            required
+          />
+        </div>
+        <div class="flex items-start">
+          <div class="flex items-center h-5">
+            <input
+              id="remember"
+              aria-describedby="remember"
+              name="remember"
+              type="checkbox"
+              class="w-4 h-4 border-gray-300 rounded bg-gray-50 focus:ring-3"
+              required
+            />
+          </div>
+          <div class="ms-3 text-sm">
+            <label for="remember" class="font-medium text-amarilli"
+              >Recordar información</label
+            >
+          </div>
+          <a href="#" class="ms-auto text-sm font-medium text-amarilli"
+            >Olvido su contraseña?</a
+          >
+        </div>
+        <button
+          routerLink="/dashboard"
+          type="submit"
+          class="w-full px-5 py-3 text-base font-medium text-center text-gray-800 bg-amarilli rounded-lg hover:bg-yellow-800 focus:ring-4 focus:ring-yellow-800 sm:w-auto"
+          (click)="login()"
+        >
+          Ingrese a su cuenta
+        </button>
+      </form>
+
+      <div class="text-sm font-medium text-gray-900 dark:text-white">
+        ¿Aún no estás registrado?
+        <button (click)="openCModal()" class="text-amarilli hover:underline">
+          Crear Cuenta
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <app-modal
+    [isOpen]="CreateOpen"
+    [title]="'Crear Cuenta'"
+    (close)="closeModal()"
+  >
+    <form (ngSubmit)="register()">
+      <div class="mb-6">
+        <label
+          for="username_r"
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >Email</label
+        >
+        <input
+          type="text"
+          id="username_r"
+          name="username_r"
+          placeholder="Ingrese nombre del usuario..."
+          [(ngModel)]="UserNew.username"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-teal-500 dark:focus:border-teal-500"
+        />
+      </div>
+
+      <div class="mb-6">
+        <label
+          for="password_r"
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >Contraseña</label
+        >
+        <input
+          type="password"
+          id="password_r"
+          name="password_r"
+          placeholder="Ingrese contraseña del usuario..."
+          [(ngModel)]="UserNew.password"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-teal-500 dark:focus:border-teal-500"
+        />
+      </div>
+
+      <div class="mb-6">
+        <label
+          for="nombre_r"
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >Nombre</label
+        >
+        <input
+          type="text"
+          id="nombre_r"
+          name="nombre_r"
+          placeholder="Ingrese contraseña del usuario..."
+          [(ngModel)]="UserNew.name"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-teal-500 dark:focus:border-teal-500"
+        />
+      </div>
+      <div class="mb-6">
+        <label
+          for="documento_r"
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >Documento</label
+        >
+        <input
+          type="text"
+          id="documento_r"
+          name="documento_r"
+          placeholder="Ingrese el Documento..."
+          [(ngModel)]="UserNew.document"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-teal-500 dark:focus:border-teal-500"
+        />
+      </div>
+      <div class="mb-6">
+        <label
+          for="direccion_r"
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >Direccion</label
+        >
+        <input
+          type="text"
+          id="direccion_r"
+          name="direccion_r"
+          placeholder="Ingrese direccion del usuario..."
+          [(ngModel)]="UserNew.adress"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-teal-500 dark:focus:border-teal-500"
+        />
+      </div>
+      <div class="mb-6">
+        <label
+          for="telefono_r"
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >Telefono/Celular</label
+        >
+        <input
+          type="text"
+          id="telefono_r"
+          name="telefono_r"
+          placeholder="Ingrese telefono/celular del usuario..."
+          [(ngModel)]="UserNew.phone"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-teal-500 dark:focus:border-teal-500"
+        />
+      </div>
+      <button
+        class="w-full items-center rounded-lg bg-teal-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-teal-800 focus:outline-none focus:ring-4 focus:ring-teal-300 dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-800"
+        type="submit"
+      >
+        Crear
+      </button>
+    </form>
+  </app-modal>
+</section>

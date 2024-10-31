@@ -1,0 +1,8 @@
+<div class="max-w-screen-xl mx-auto p-1 md:p-4">
+  @for (categorias of Data; track $index) {
+  <app-carousel
+    [title]="categorias.nombre"
+    [items]="categorias.productos"
+  ></app-carousel>
+  }
+</div>
