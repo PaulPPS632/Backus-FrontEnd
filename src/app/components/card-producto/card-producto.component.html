@@ -1,12 +1,12 @@
 <div
-  class="w-[180px] h-72 p-2 md:p-4 m-auto md:w-52 md:h-80 flex flex-col justify-between rounded-lg bg-gray-100 shadow-sm dark:border-gray-700 dark:bg-gray-800 hover:scale-105 transition-all hover:cursor-pointer"
+  class="w-[180px] h-56 p-2 md:p-4 m-auto md:w-52 md:h-[400px] flex flex-col justify-between rounded-lg bg-gray-800 text-white shadow-sm hover:scale-105 transition-all hover:cursor-pointer"
 >
   <div
     [routerLink]="['/producto', producto.id]"
-    class="w-full h-32 object-contain"
+    class="w-full h-36 md:h-56 object-contain"
   >
     <img
-      class="mx-auto w-full h-32 object-cover dark:hidden rounded-lg"
+      class="mx-auto h-full object-cover dark:hidden rounded-lg"
       [src]="producto.imagen_principal"
       alt="imagen de Producto"
     />
@@ -14,7 +14,7 @@
 
   <div [routerLink]="['/producto', producto.id]" class="pt-6 flex-grow h-24">
     <p
-      class="text-sm md:text-lg font-semibold leading-tight text-gray-900 dark:text-white hover:underline hover:cursor-pointer hover:text truncate"
+      class="text-sm md:text-lg font-semibold leading-tight text-white dark:text-white hover:underline hover:cursor-pointer hover:text"
     >
       {{ producto.nombre }}
     </p>

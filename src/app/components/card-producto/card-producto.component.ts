@@ -35,9 +35,10 @@ export class CardProductoComponent {
     } else {
       Swal.fire({
         icon: 'info',
-        title: 'Este curso ya está en el carrito',
-        showCancelButton: true,
-        confirmButtonText: 'OK',
+        title: 'Este producto ya está en el carrito',
+        text: 'Se aumentara la cantidad',
+        timer: 1400,
+        showConfirmButton: false,
       });
     }
   }

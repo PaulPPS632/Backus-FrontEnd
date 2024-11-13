@@ -19,12 +19,17 @@ export class ProductoDetalleComponent {
   router = inject(Router);
   producto: any;
   recomendados: any[] = [];
+  imagenPresentada: string = '';
+
   ngOnInit(): void {
     this.productoService.getCourseById(this.id).subscribe((res) => {
       this.producto = res;
+      this.imagenPresentada = this.producto.imagen_principal;
     });
   }
-
+  selectImage(url: string) {
+    this.imagenPresentada = url;
+  }
   Agregar() {
     const agregado = this.cartStateService.addCurso(this.producto);
     if (agregado) {
@@ -43,9 +48,10 @@ export class ProductoDetalleComponent {
     } else {
       Swal.fire({
         icon: 'info',
-        title: 'Este curso ya está en el carrito',
-        showCancelButton: true,
-        confirmButtonText: 'OK',
+        title: 'Este producto ya está en el carrito',
+        text: 'Se aumentara la cantidad',
+        timer: 1400,
+        showConfirmButton: false,
       });
     }
   }

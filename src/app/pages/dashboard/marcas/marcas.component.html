@@ -1,0 +1,32 @@
+<h1 class="text-center text-3xl font-bold text-white">MARCAS</h1>
+<button
+  type="button"
+  class="text-white bg-amarillooscuro hover:bg-amarilli font-bold py-2 px-4 cursor-pointer hover:scale-105 transition-all rounded-lg my-4"
+  (click)="togleModal()"
+>
+  NUEVO
+</button>
+
+<app-tables
+  [data]="listaMarcas"
+  [columns]="['id', 'nombre']"
+  [ruta]="'/dashboard/productos'"
+  (activeModal)="togleModal()"
+  (datosEdit)="editModalDatos($event)"
+/>
+<app-modal [isOpen]="modal" (close)="togleModal()" [title]="'CATEGORIA'">
+  <app-input
+    [Data]="newCategoria.nombre"
+    (DataChange)="newCategoria.nombre = $event"
+    [Name]="'Nombre'"
+    [Type]="'text'"
+    [Placeholder]="'Ingrese un Nombre'"
+  ></app-input>
+
+  <button
+    (click)="Crear()"
+    class="text-white w-full px-5 py-2 font-extrabold rounded-lg bg-teal-900 hover:bg-teal-800"
+  >
+    {{ flagEdit ? "EDITAR" : "CREAR" }}
+  </button>
+</app-modal>

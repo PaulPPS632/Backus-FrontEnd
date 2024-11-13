@@ -6,10 +6,10 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class CategoriasService {
+export class MarcaService {
   constructor(private http: HttpClient) {}
 
-  apiUrl: string = environment.API_URL + '/categoria';
+  apiUrl: string = environment.API_URL + '/marca';
   headers = new HttpHeaders({
     Authorization: `Bearer ${localStorage.getItem('authToken')}`,
   });
@@ -17,9 +17,13 @@ export class CategoriasService {
     return this.http.get<any>(`${this.apiUrl}`);
   }
   create(data: any): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}`, data, {
-      headers: this.headers,
-    });
+    return this.http.post<any>(
+      `${this.apiUrl}`,
+      data
+      //   , {
+      //   headers: this.headers,
+      // }
+    );
   }
   update(data: any): Observable<any> {
     return this.http.put<any>(

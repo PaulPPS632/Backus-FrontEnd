@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
+import { Producto } from '../models/produto.model';
 
 @Injectable({
   providedIn: 'root',
@@ -19,8 +20,8 @@ export class ProductoService {
       headers: this.headers,
     });
   }*/
-  getAll(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}`);
+  getAll(): Observable<Producto[]> {
+    return this.http.get<Producto[]>(`${this.apiUrl}`);
   }
   getCourseById(id: string): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/${id}`);
@@ -45,15 +46,30 @@ export class ProductoService {
     return this.http.get<any[]>(this.apiUrl + '/paged', { params });
   }
   create(data: FormData): Observable<any> {
-    console.log(data);
-    return this.http.post<any>(`${this.apiUrl}`, data, {
-      headers: this.headers,
-    });
+    return this.http.post<any>(
+      `${this.apiUrl}`,
+      data
+      //   {
+      //   headers: this.headers,
+      // }
+    );
+  }
+  update(data: FormData): Observable<any> {
+    return this.http.put<any>(
+      `${this.apiUrl}`,
+      data
+      //   {
+      //   headers: this.headers,
+      // }
+    );
   }
   getCoursesHome(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/home`);
   }
   getPorCategoria(id: number): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/categoria/${id}`);
+  }
+  getSearch(search: string): Observable<Producto[]> {
+    return this.http.get<Producto[]>(`${this.apiUrl}/search/${search}`);
   }
 }

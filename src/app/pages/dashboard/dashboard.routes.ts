@@ -5,7 +5,39 @@ const routes: Routes = [
   {
     path: '',
     component: LayoutDashboardComponent,
-    children: [],
+    children: [
+      {
+        path: 'categorias',
+        loadComponent: () =>
+          import('./categorias/categorias.component').then(
+            (m) => m.CategoriasComponent
+          ),
+      },
+      {
+        path: 'marcas',
+        loadComponent: () =>
+          import('./marcas/marcas.component').then((m) => m.MarcasComponent),
+      },
+      {
+        path: 'productos',
+        loadComponent: () =>
+          import('./products/products.component').then(
+            (m) => m.ProductsComponent
+          ),
+      },
+      {
+        path: 'usuarios',
+        loadComponent: () =>
+          import('./usuarios/usuarios.component').then(
+            (m) => m.UsuariosComponent
+          ),
+      },
+      {
+        path: 'pedidos',
+        loadComponent: () =>
+          import('./pedidos/pedidos.component').then((m) => m.PedidosComponent),
+      },
+    ],
   },
 ] as Routes;
 

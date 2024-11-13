@@ -1,0 +1,122 @@
+<h1 class="text-center text-3xl font-bold text-white">PRODUCTOS</h1>
+<button
+  type="button"
+  class="text-white bg-amarillooscuro hover:bg-amarilli font-bold py-2 px-4 cursor-pointer hover:scale-105 transition-all rounded-lg my-4"
+  (click)="togleModal()"
+>
+  NUEVO
+</button>
+<app-tables
+  [data]="listaProducts"
+  [columns]="['id', 'nombre', 'marca', 'categoria', 'precio', 'stock']"
+  [ruta]="'/dashboard/productos'"
+  (activeModal)="togleModal()"
+  (datosEdit)="editModalDatos($event)"
+/>
+<app-modal [isOpen]="modal" (close)="togleModal()" [title]="'PRODUCTO'">
+  <app-input
+    [Data]="newProducto.nombre"
+    (DataChange)="newProducto.nombre = $event"
+    [Name]="'Nombre'"
+    [Type]="'text'"
+    [Placeholder]="'Ingrese un Nombre'"
+  ></app-input>
+  <app-input
+    [Data]="newProducto.descripcion"
+    (DataChange)="newProducto.descripcion = $event"
+    [Name]="'Descripcion'"
+    [Type]="'text'"
+    [Placeholder]="'Ingrese una Descripcion'"
+  ></app-input>
+  <app-input
+    [Data]="newProducto.precio"
+    (DataChange)="newProducto.precio = $event"
+    [Name]="'Precio'"
+    [Type]="'number'"
+    [Placeholder]="'Ingrese un Precio'"
+  ></app-input>
+  <app-input
+    [Data]="newProducto.stock"
+    (DataChange)="newProducto.stock = $event"
+    [Name]="'Stock'"
+    [Type]="'number'"
+    [Placeholder]="'Ingrese Tiempo aprox en Horas'"
+  ></app-input>
+  <div class="mb-4">
+    <label
+      for="marcas"
+      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+      >Marcas</label
+    >
+    <select
+      name="marcas"
+      id="marcas"
+      [(ngModel)]="newProducto.id_marca"
+      (change)="selectMarca($event)"
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-teal-500 dark:focus:border-teal-500"
+    >
+      <option [value]="0" disabled selected>Elige ...</option>
+      @for (item of marcas; track $index) {
+      <option [value]="item.id">{{ item.nombre }}</option>
+      }
+    </select>
+  </div>
+  <div class="mb-4">
+    <label
+      for="categoria"
+      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+      >Categoria</label
+    >
+    <select
+      name="categoria"
+      id="categoria"
+      [(ngModel)]="newProducto.id_categoria"
+      (change)="selectCategoria($event)"
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-teal-500 dark:focus:border-teal-500"
+    >
+      <option [value]="0" disabled selected>Elige ...</option>
+      @for (item of categorias; track $index) {
+      <option [value]="item.id">{{ item.nombre }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="mb-6">
+    <label
+      for="archivo"
+      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+      >Seleccionar Imagen Principal</label
+    >
+    <input
+      type="file"
+      id="archivo"
+      name="archivo"
+      (change)="onFileChangePrincipal($event)"
+      required
+      class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+    />
+  </div>
+  <div class="mb-6">
+    <label
+      for="archivo"
+      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+      >Seleccionar Imagenes Secundarios</label
+    >
+    <input
+      type="file"
+      id="archivo"
+      name="archivo"
+      (change)="onFileChange($event)"
+      multiple
+      required
+      class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+    />
+  </div>
+
+  <button
+    (click)="Crear()"
+    class="text-white w-full px-5 py-2 font-extrabold rounded-lg bg-teal-900 hover:bg-teal-800"
+  >
+    {{ flagEdit ? "EDITAR" : "CREAR" }}
+  </button>
+</app-modal>

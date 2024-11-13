@@ -2,16 +2,27 @@
   <div class="max-w-screen-xl px-4 mx-auto 2xl:px-0">
     <div class="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
       <div class="shrink-0 max-w-md lg:max-w-lg mx-auto">
-        <p
-          class="text-sm font-medium leading-none text-gray-500 dark:text-gray-400"
-        >
-          Imagen Referencial *
-        </p>
         <img
-          class="w-full dark:hidden"
-          [src]="producto.imagen_principal"
+          class="w-96 h-96 dark:hidden object-contain"
+          [src]="imagenPresentada"
           alt=""
         />
+        <div class="mt-2 h-20 flex flex-row gap-2">
+          <img
+            class="w-20 dark:hidden object-contain hover:scale-105 transition-all cursor-pointer"
+            [src]="producto.imagen_principal"
+            alt="imagen de producto"
+            (click)="selectImage(producto.imagen_principal)"
+          />
+          @for (item of producto.imageurl; track $index) {
+          <img
+            class="w-20 dark:hidden object-contain hover:scale-105 transition-all cursor-pointer"
+            [src]="item"
+            alt=""
+            (click)="selectImage(item)"
+          />
+          }
+        </div>
       </div>
 
       <div class="mt-6 sm:mt-8 lg:mt-0">
