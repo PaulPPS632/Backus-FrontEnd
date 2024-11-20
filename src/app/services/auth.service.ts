@@ -12,6 +12,9 @@ export class AuthService {
   public usuarioSubject = new BehaviorSubject<any | null>(null);
   public usuario$ = this.usuarioSubject.asObservable();
 
+  public usuarioIDSubject = new BehaviorSubject<any | null>(null);
+  public usuarioID$ = this.usuarioSubject.asObservable();
+
   constructor(private http: HttpClient) {
     this.cargarUsuario();
   }
@@ -21,7 +24,9 @@ export class AuthService {
     if (token) {
       this.isLoggedIn().subscribe((res) => {
         if (res.estado) {
+          console.log('Cargarusuario', res);
           this.usuarioSubject.next(res.user);
+          this.usuarioIDSubject.next(res.usuarioId);
         } else {
           this.logout();
         }
@@ -53,6 +58,7 @@ export class AuthService {
         estado: res.estado,
         rol: res.rol,
         user: res.username,
+        usuarioId: res.usuarioId,
       }))
     );
   }

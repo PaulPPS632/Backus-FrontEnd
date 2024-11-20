@@ -3,6 +3,7 @@ import { Router, RouterLink } from '@angular/router';
 import { CartStateService } from '../../services/cart-state.service';
 import { initFlowbite } from 'flowbite';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-header-website',
@@ -23,7 +24,8 @@ export class HeaderWebsiteComponent implements OnInit {
     marca: '', // Ajusta esto según tus necesidades
     categoria: '',
   };
-  constructor(private router: Router) {}
+  Usuario: string = '';
+  constructor(private router: Router, private authService: AuthService) {}
   ngOnInit(): void {
     initFlowbite();
     this.cartStateService.quantity$.subscribe((qty) => {
@@ -31,6 +33,12 @@ export class HeaderWebsiteComponent implements OnInit {
     });
     this.cartStateService.total$.subscribe((total) => {
       this.total = total;
+    });
+    this.authService.usuario$.subscribe((user) => {
+      if (user) {
+        this.Usuario = user;
+        console.log(this.Usuario);
+      }
     });
   }
   buscar(event: Event) {
@@ -42,5 +50,13 @@ export class HeaderWebsiteComponent implements OnInit {
       queryParams: this.queryParams,
       queryParamsHandling: 'merge', // O 'preserve' si quieres mantener los parámetros existentes
     });
+  }
+  Sesion() {
+    if (this.Usuario) {
+      this.Usuario = '';
+      this.authService.logout();
+    } else {
+      this.router.navigate(['sign-in']);
+    }
   }
 }

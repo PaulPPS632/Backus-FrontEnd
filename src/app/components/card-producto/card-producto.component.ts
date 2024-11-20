@@ -14,9 +14,7 @@ export class CardProductoComponent {
   @Input() producto: any;
   CartStateService = inject(CartStateService);
   router = inject(Router);
-  ngOnInit(): void {
-    console.log(this.producto);
-  }
+  ngOnInit(): void {}
   Agregar() {
     const agregado = this.CartStateService.addCurso(this.producto);
     if (agregado) {

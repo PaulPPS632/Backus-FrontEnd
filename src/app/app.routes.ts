@@ -18,7 +18,7 @@ export const routes: Routes = [
       ),
     data: {
       title: 'Dashboard',
-      roles: ['administrador', 'profesor', 'encargado'],
+      roles: ['administrador', 'almacenero', 'vendedor'],
     },
   },
   {
@@ -30,7 +30,12 @@ export const routes: Routes = [
       ),
     data: {
       title: 'Panel',
-      roles: ['alumno'],
+      roles: [
+        'empresa',
+        'persona natural',
+        'persona juridica',
+        'administrador',
+      ],
     },
   },
   {

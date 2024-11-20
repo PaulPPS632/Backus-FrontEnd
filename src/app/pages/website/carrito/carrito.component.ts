@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { v4 as uuidv4 } from 'uuid';
 import Swal from 'sweetalert2';
 import KRGlue from '@lyracom/embedded-form-glue';
+import { PedidosService } from '../../../services/pedidos.service';
 
 @Component({
   selector: 'app-carrito',
@@ -20,6 +21,7 @@ import KRGlue from '@lyracom/embedded-form-glue';
 })
 export class CarritoComponent {
   productos: Curso[] = [];
+  pedidoService = inject(PedidosService);
   cartStateService = inject(CartStateService);
   authService = inject(AuthService);
   paymentService = inject(PaymentService);
@@ -31,6 +33,7 @@ export class CarritoComponent {
     width: '0%',
   };
   activeIndex = 0;
+  username = '';
   data = {
     amount: this.precioTotal * 100,
     currency: 'PEN',
@@ -57,6 +60,10 @@ export class CarritoComponent {
     });
     this.cartStateService.total$.subscribe((total) => {
       this.precioTotal = total;
+    });
+    this.authService.usuarioID$.subscribe((user) => {
+      console.log(user);
+      this.username = user;
     });
   }
   ProcederCompletarDatos() {
@@ -99,7 +106,7 @@ export class CarritoComponent {
     this.ProgressBar(100);
     const endpoint = 'https://api.micuentaweb.pe';
     const publicKey =
-      '87365204:testpublickey_TjJxMZ9Mzbgk7ga0Zd5Hh59l3AUoNbnN1zwHNUnct4QsU';
+      '80203493:testpublickey_2h74LTfgBCifM8NOXKuDkUqYUHMbb7jUegkAJqSUYYLgl';
     this.paymentService.postExternalData(this.data).subscribe((data) => {
       this.formtoken = data.formToken;
       KRGlue.loadLibrary(endpoint, publicKey) // Load the remote library
@@ -116,7 +123,7 @@ export class CarritoComponent {
             this.paymentService.validatePayment(paymentData).subscribe(
               (response) => {
                 if (response.Status) {
-                  //this.RegistrarPedido();
+                  this.RegistrarPedido();
                 } else {
                   this.message = 'no pagado';
                 }
@@ -132,19 +139,19 @@ export class CarritoComponent {
         .then(({ KR }) => KR.renderElements('#myPaymentForm'));
     });
   }
-  /*
+
   RegistrarPedido() {
     const pedido = {
-      userId: this.UserID,
-      productos: JSON.stringify(this.state.products()),
+      username: this.username,
+      productos: JSON.stringify(this.productos),
       datospago: JSON.stringify(this.data),
       estado: 'NUEVO',
     };
-    
+
     this.pedidoService.registrar(pedido).subscribe();
-    this.RediccionPanelOpen = true;
+    //this.RediccionPanelOpen = true;
   }
-  */
+
   EstiloContenedorDatos = {
     display: 'block',
   };

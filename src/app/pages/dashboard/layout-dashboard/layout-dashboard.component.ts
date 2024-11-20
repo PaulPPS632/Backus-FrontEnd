@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { initFlowbite } from 'flowbite';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-layout-dashboard',
@@ -10,8 +11,11 @@ import { initFlowbite } from 'flowbite';
   styleUrl: './layout-dashboard.component.css',
 })
 export class LayoutDashboardComponent {
-  constructor() {}
+  constructor(private authService: AuthService) {}
   ngOnInit(): void {
     initFlowbite();
+  }
+  CerrarSesion() {
+    this.authService.logout();
   }
 }

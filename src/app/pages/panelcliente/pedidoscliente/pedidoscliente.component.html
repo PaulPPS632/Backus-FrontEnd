@@ -1,1 +1,6 @@
-<p>pedidoscliente works!</p>
+<div
+  class="max-w-screen-xl flex flex-col flex-wrap items-start justify-center mx-auto p-4"
+>
+  <h2 class="text-white text-2xl my-6">Hola : {{ username }}</h2>
+  <app-tables [data]="pedidos" [columns]="['id', 'username', 'estado']" />
+</div>

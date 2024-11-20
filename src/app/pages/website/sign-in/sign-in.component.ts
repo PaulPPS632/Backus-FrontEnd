@@ -22,7 +22,7 @@ export class SignInComponent {
     document: '',
     adress: '',
     phone: '',
-    rol: 'cliente',
+    rol: 'persona natural',
   };
   CreateOpen = false;
   authService = inject(AuthService);
@@ -65,8 +65,11 @@ export class SignInComponent {
       .Logged(this.UserNew.username, this.UserNew.password)
       .subscribe(
         (response) => {
-          console.log(response);
-          if (response.rol === 'cliente') {
+          if (
+            response.rol === 'empresa' ||
+            response.rol === 'persona juridica' ||
+            response.rol === 'persona natural'
+          ) {
             this.router.navigate(['/panel']);
           } else {
             this.router.navigate(['/dashboard']);

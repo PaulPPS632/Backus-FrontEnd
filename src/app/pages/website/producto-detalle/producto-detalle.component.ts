@@ -22,7 +22,7 @@ export class ProductoDetalleComponent {
   imagenPresentada: string = '';
 
   ngOnInit(): void {
-    this.productoService.getCourseById(this.id).subscribe((res) => {
+    this.productoService.getById(this.id).subscribe((res) => {
       this.producto = res;
       this.imagenPresentada = this.producto.imagen_principal;
     });

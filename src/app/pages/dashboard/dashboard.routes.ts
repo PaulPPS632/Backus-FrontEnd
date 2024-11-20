@@ -26,6 +26,13 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'productos/:id',
+        loadComponent: () =>
+          import('./producto-detalle/producto-detalle.component').then(
+            (m) => m.ProductoDetalleComponent
+          ),
+      },
+      {
         path: 'usuarios',
         loadComponent: () =>
           import('./usuarios/usuarios.component').then(

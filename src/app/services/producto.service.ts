@@ -23,7 +23,7 @@ export class ProductoService {
   getAll(): Observable<Producto[]> {
     return this.http.get<Producto[]>(`${this.apiUrl}`);
   }
-  getCourseById(id: string): Observable<any> {
+  getById(id: string): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/${id}`);
   }
   getPaged(page: number, pageSize: number): Observable<any> {
@@ -71,5 +71,8 @@ export class ProductoService {
   }
   getSearch(search: string): Observable<Producto[]> {
     return this.http.get<Producto[]>(`${this.apiUrl}/search/${search}`);
+  }
+  putProducto(data: FormData): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}`, data);
   }
 }

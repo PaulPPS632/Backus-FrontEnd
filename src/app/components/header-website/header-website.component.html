@@ -120,7 +120,7 @@
     </div>
 
     <button
-      routerLink="/sign-in"
+      (click)="Sesion()"
       id="sign"
       type="button"
       class="md:order-3 inline-flex items-center rounded-lg justify-center p-2 text-white bg-amarilli hover:bg-amarillooscurofocus:ring-4 focus:outline-none focus:ring-teal-300 font-medium text-sm px-4 py-2 text-center dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-800"
@@ -142,7 +142,7 @@
           d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm0 0a8.949 8.949 0 0 0 4.951-1.488A3.987 3.987 0 0 0 13 16h-2a3.987 3.987 0 0 0-3.951 3.512A8.948 8.948 0 0 0 12 21Zm3-11a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
         />
       </svg>
-      Iniciar Sesion
+      {{ Usuario == "" ? "Iniciar Sesion" : "Cerrar Sesion" }}
     </button>
     <div
       class="flex items-start justify-start md:order-4 space-x-3 md:space-x-0 rtl:space-x-reverse border-amarilli border py-1 px-3"

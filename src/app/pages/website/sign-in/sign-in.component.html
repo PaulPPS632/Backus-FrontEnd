@@ -171,6 +171,24 @@
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-teal-500 dark:focus:border-teal-500"
         />
       </div>
+      <div class="mb-6">
+        <label
+          for="tipodocumento"
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >Tipo Documento</label
+        >
+        <select
+          name="tipodocumento"
+          id="tipodocumento"
+          [(ngModel)]="UserNew.rol"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-teal-500 dark:focus:border-teal-500"
+        >
+          <option [value]="null" disabled selected>Elige ...</option>
+          <option [value]="'empresa'">Empresa</option>
+          <option [value]="'persona juridica'">Persona Jurídica</option>
+          <option [value]="'persona natural'">Persona Natural</option>
+        </select>
+      </div>
       <button
         class="w-full items-center rounded-lg bg-teal-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-teal-800 focus:outline-none focus:ring-4 focus:ring-teal-300 dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-800"
         type="submit"

@@ -8,6 +8,7 @@ import Swal from 'sweetalert2';
 import { CategoriasService } from '../../../services/categorias.service';
 import { MarcaService } from '../../../services/marca.service';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-products',
@@ -43,7 +44,8 @@ export class ProductsComponent implements OnInit {
   constructor(
     private productoService: ProductoService,
     private categoriasService: CategoriasService,
-    private marcaService: MarcaService
+    private marcaService: MarcaService,
+    private router: Router
   ) {}
   ngOnInit(): void {
     this.cargarproductos();
@@ -151,18 +153,19 @@ export class ProductsComponent implements OnInit {
   }
 
   editModalDatos(data: any) {
-    this.flagEdit = true;
+    //this.flagEdit = true;
 
     this.newProducto.id = data.id;
     this.newProducto.nombre = data.nombre;
     this.newProducto.descripcion = data.descripcion;
     this.newProducto.stock = data.stock;
     this.newProducto.precio = data.precio;
-    this.newProducto.id_categoria = this.categorias.find(
-      (categoria) => categoria.nombre === data.categoria
-    )?.id;
-    this.newProducto.id_marca = this.marcas.find(
-      (marca) => marca.nombre === data.marca
-    )?.id;
+    // this.newProducto.id_categoria = this.categorias.find(
+    //   (categoria) => categoria.nombre === data.categoria
+    // )?.id;
+    // this.newProducto.id_marca = this.marcas.find(
+    //   (marca) => marca.nombre === data.marca
+    // )?.id;
+    this.router.navigate(['/dashboard/productos/' + data.id]);
   }
 }
