@@ -8,10 +8,11 @@
 </button>
 <app-tables
   [data]="listaProducts"
-  [columns]="['id', 'nombre', 'marca', 'categoria', 'precio', 'stock']"
+  [columns]="['pn', 'nombre', 'marca', 'categoria', 'precio', 'stock']"
   [ruta]="'/dashboard/productos'"
   (activeModal)="togleModal()"
   (datosEdit)="editModalDatos($event)"
+  (deleteElement)="deleteproduct($event)"
 />
 <app-modal [isOpen]="modal" (close)="togleModal()" [title]="'PRODUCTO'">
   <app-input

@@ -1,1 +1,59 @@
-<p>usuarios works!</p>
+<app-tables
+  [data]="usuarios"
+  [columns]="['document', 'name', 'isvalid']"
+  (activeModal)="togleModal()"
+  (datosEdit)="editModalDatos($event)"
+  (deleteElement)="deleteproduct($event)"
+/>
+<app-modal [isOpen]="modal" (close)="togleModal()" [title]="'USUARIO'">
+  <app-input
+    [Data]="usuario.username"
+    (DataChange)="usuario.username = $event"
+    [Name]="'UserName'"
+    [Placeholder]="'Ingresa un UserName'"
+  />
+  <app-input
+    [Data]="usuario.name"
+    [Name]="'Name'"
+    [Placeholder]="'Ingresa un Name'"
+  />
+  <app-input
+    [Data]="usuario.adress"
+    [Name]="'Adress'"
+    [Placeholder]="'Ingresa un Adress'"
+  />
+  <app-input
+    [Data]="usuario.phone"
+    [Type]="'tel'"
+    [Name]="'Phone'"
+    [Placeholder]="'Ingresa un Phone'"
+  />
+  <app-input
+    [Data]="usuario.document"
+    [Name]="'Document'"
+    [Placeholder]="'Ingresa un Document'"
+  />
+  <div class="mb-6">
+    <label for="tipodocumento" class="block mb-2 text-sm font-medium text-white"
+      >Tipo Documento</label
+    >
+    <select
+      name="tipodocumento"
+      id="tipodocumento"
+      [(ngModel)]="usuario.rol.nombre"
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-teal-500 dark:focus:border-teal-500"
+    >
+      <option [value]="null" disabled selected>Elige ...</option>
+      <option value="administrador">Administrador</option>
+      <option value="empresa">Empresa</option>
+      <option value="persona juridica">Persona Jurídica</option>
+      <option value="persona natural">Persona Natural</option>
+    </select>
+  </div>
+  <button
+    class="w-full h-12 bg-amarillooscuro hover:bg-amarilli transition-all text-lg font-bold hover:text-xl rounded-md"
+    type="button"
+  >
+    GUARDAR CAMBIOS
+  </button>
+</app-modal>

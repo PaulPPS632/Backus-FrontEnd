@@ -33,7 +33,7 @@ export class CarritoComponent {
     width: '0%',
   };
   activeIndex = 0;
-  username = '';
+  usuario: any;
   data = {
     amount: this.precioTotal * 100,
     currency: 'PEN',
@@ -61,10 +61,17 @@ export class CarritoComponent {
     this.cartStateService.total$.subscribe((total) => {
       this.precioTotal = total;
     });
-    this.authService.usuarioID$.subscribe((user) => {
-      console.log(user);
-      this.username = user;
-    });
+    // this.authService.usuarioData$.subscribe((user) => {
+    //   if (user) {
+    //     console.log(user);
+    //     this.data.customer.email = user.username;
+    //     this.data.customer.billingDetails.firstName = user.name;
+    //     this.data.customer.billingDetails.cellPhoneNumber = user.phone;
+    //     this.data.customer.billingDetails.address = user.adress;
+    //     this.data.customer.billingDetails.identityCode = user.document;
+    //     console.log(this.data);
+    //   }
+    // });
   }
   ProcederCompletarDatos() {
     this.authService.isLoggedIn().subscribe((isLoggedIn) => {
@@ -75,14 +82,14 @@ export class CarritoComponent {
           this.data.amount = this.precioTotal * 100;
           this.data.orderId = 'ORDER-' + uuidv4();
           console.log(isLoggedIn.user);
-          this.data.customer.email = isLoggedIn.user.email;
-          this.data.customer.billingDetails.firstName = isLoggedIn.user.nombre;
-          this.data.customer.billingDetails.lastName = isLoggedIn.user.apellido;
+          this.data.customer.email = isLoggedIn.data.username;
+          this.data.customer.billingDetails.firstName = isLoggedIn.data.name;
+          this.data.customer.billingDetails.lastName = '';
           this.data.customer.billingDetails.cellPhoneNumber =
-            isLoggedIn.user.telefono;
-          this.data.customer.billingDetails.address = isLoggedIn.user.direccion;
+            isLoggedIn.data.phone;
+          this.data.customer.billingDetails.address = isLoggedIn.data.adress;
           this.data.customer.billingDetails.identityCode =
-            isLoggedIn.user.documento;
+            isLoggedIn.data.document;
         } else {
           Swal.fire('Error', 'No hay productos en el carrito', 'error');
         }
@@ -142,7 +149,7 @@ export class CarritoComponent {
 
   RegistrarPedido() {
     const pedido = {
-      username: this.username,
+      username: this.usuario.username,
       productos: JSON.stringify(this.productos),
       datospago: JSON.stringify(this.data),
       estado: 'NUEVO',

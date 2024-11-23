@@ -168,4 +168,40 @@ export class ProductsComponent implements OnInit {
     // )?.id;
     this.router.navigate(['/dashboard/productos/' + data.id]);
   }
+  deleteproduct(data: any) {
+    Swal.fire({
+      title: 'Seguro que quieres Eliminar?',
+      text: 'Si realizas esta accion, no se podra revertir!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.delete(data);
+      }
+    });
+  }
+  delete(data: any) {
+    this.productoService.deleteProducto(data.id).subscribe({
+      next: () => {
+        //actualizar productos
+        this.cargarproductos();
+        this.flagEdit = false;
+        Swal.fire({
+          icon: 'success',
+          title: 'Producto eliminado',
+          text: 'El producto ha sido eliminado.',
+        });
+      },
+      error: (error) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Producto no eliminado',
+          text: error,
+        });
+      },
+    });
+  }
 }

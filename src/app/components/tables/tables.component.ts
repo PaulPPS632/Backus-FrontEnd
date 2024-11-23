@@ -15,14 +15,15 @@ export class TablesComponent {
   @Input() ruta: string = '';
   @Input() param: string = '';
   @Output() activeModal = new EventEmitter<void>();
+  @Output() deleteElement = new EventEmitter<any>();
   @Output() datosEdit = new EventEmitter<any>();
   togleModal(id_producto: string) {
-    console.log(id_producto);
     const enviado = this.data.find((dato) => dato.id == id_producto);
-    console.log(this.data);
-    console.log(enviado);
-
     this.activeModal.emit();
     this.datosEdit.emit(enviado);
+  }
+  delete(id_producto: string) {
+    const enviado = this.data.find((dato) => dato.id == id_producto);
+    this.deleteElement.emit(enviado);
   }
 }

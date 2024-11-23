@@ -15,6 +15,8 @@ export class AuthService {
   public usuarioIDSubject = new BehaviorSubject<any | null>(null);
   public usuarioID$ = this.usuarioSubject.asObservable();
 
+  public usuarioDataSubject = new BehaviorSubject<any | null>(null);
+  public usuarioData$ = this.usuarioDataSubject.asObservable();
   constructor(private http: HttpClient) {
     this.cargarUsuario();
   }
@@ -27,6 +29,7 @@ export class AuthService {
           console.log('Cargarusuario', res);
           this.usuarioSubject.next(res.user);
           this.usuarioIDSubject.next(res.usuarioId);
+          this.usuarioDataSubject.next(res.data);
         } else {
           this.logout();
         }
@@ -40,6 +43,7 @@ export class AuthService {
         localStorage.setItem('authToken', response.token);
         localStorage.setItem('rol', response.rol);
         localStorage.setItem('User', response.username);
+        localStorage.setItem('UserData', JSON.stringify(response.data));
       })
     );
   }
@@ -59,6 +63,7 @@ export class AuthService {
         rol: res.rol,
         user: res.username,
         usuarioId: res.usuarioId,
+        data: res.data,
       }))
     );
   }
@@ -73,7 +78,9 @@ export class AuthService {
         localStorage.setItem('authToken', response.token);
         localStorage.setItem('rol', response.rol);
         localStorage.setItem('User', JSON.stringify(response.username));
+        localStorage.setItem('UserData', JSON.stringify(response.data));
         this.usuarioSubject.next(response.username);
+        this.usuarioDataSubject.next(response.data);
       })
     );
   }
@@ -82,7 +89,9 @@ export class AuthService {
     localStorage.removeItem('authToken');
     localStorage.removeItem('rol');
     localStorage.removeItem('User');
+    localStorage.removeItem('UserData');
     this.usuarioSubject.next(null);
+    this.usuarioDataSubject.next(null);
   }
 
   getToken(): string | null {

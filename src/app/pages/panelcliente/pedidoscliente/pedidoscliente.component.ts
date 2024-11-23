@@ -22,7 +22,7 @@ export class PedidosclienteComponent implements OnInit {
   ngOnInit(): void {
     this.authService.usuarioID$.subscribe((id) => {
       this.username = id;
-      this.pedidosService.getAll(this.username).subscribe((data) => {
+      this.pedidosService.getByUser(this.username).subscribe((data) => {
         this.pedidos = data;
       });
     });

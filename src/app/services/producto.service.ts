@@ -75,4 +75,7 @@ export class ProductoService {
   putProducto(data: FormData): Observable<any> {
     return this.http.put<any>(`${this.apiUrl}`, data);
   }
+  deleteProducto(id: string): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrl}/${id}`);
+  }
 }

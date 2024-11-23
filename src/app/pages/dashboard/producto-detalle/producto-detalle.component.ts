@@ -16,7 +16,20 @@ import { Producto } from '../../../models/produto.model';
 export class ProductoDetalleComponent implements OnInit {
   @Input('id') id: string = '';
   productoService = inject(ProductoService);
-  producto: any;
+  producto: Producto = {
+    id: '',
+    nombre: '',
+    pn: '',
+    descripcion: '',
+    precio: 0,
+    stock: 0,
+    id_marca: 0,
+    id_categoria: 0,
+    garantia_cliente: 0,
+    garantia_total: 0,
+    imagen_principal: '',
+    imageurl: [],
+  };
 
   categorias: any[] = [];
   marcas: any[] = [];
@@ -41,14 +54,22 @@ export class ProductoDetalleComponent implements OnInit {
     private marcaService: MarcaService
   ) {}
   ngOnInit(): void {
-    this.cargarProducto();
     this.cargarCategorias();
     this.cargarMarca();
+    this.cargarProducto();
   }
   cargarProducto() {
     this.productoService.getById(this.id).subscribe((data) => {
       this.producto = data;
-      console.log('producto cargado', this.producto);
+      // const id_marca = this.marcas!.find(
+      //   (marca) => marca.nombre === this.producto!.marca
+      // ).id;
+      // console.log(id_marca);
+      // const id_categoria = this.categorias!.find(
+      //   (categoria) => categoria.nombre === this.producto!.categoria
+      // ).id;
+      // this.producto.id_marca = id_marca;
+      // this.producto.id_categoria = id_categoria;
     });
   }
   cargarCategorias() {

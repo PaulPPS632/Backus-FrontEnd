@@ -1,5 +1,5 @@
-<h1 class="text-5xl font-extrabold dark:text-white">
-  {{ producto.nombre }}
+<h1 class="text-5xl text-white font-extrabold dark:text-white">
+  {{ producto!.nombre }}
 </h1>
 
 <form>
@@ -7,14 +7,14 @@
     <div class="mb-6">
       <label
         for="editNombre"
-        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        class="block mb-2 text-sm font-medium text-white dark:text-white"
         >Nombre Producto</label
       >
       <input
         type="text"
         id="editNombre"
         name="editNombre"
-        [(ngModel)]="producto.nombre"
+        [(ngModel)]="producto!.nombre"
         placeholder="Ingrese nombre del producto..."
         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         required
@@ -24,14 +24,14 @@
     <div class="mb-6">
       <label
         for="editPn"
-        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        class="block mb-2 text-sm font-medium text-white dark:text-white"
         >PN Producto</label
       >
       <input
         type="text"
         id="editPn"
         name="editPn"
-        [(ngModel)]="producto.pn"
+        [(ngModel)]="producto!.pn"
         placeholder="Ingrese nombre del PN del producto..."
         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         required
@@ -41,14 +41,14 @@
     <div class="mb-6">
       <label
         for="editStock"
-        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        class="block mb-2 text-sm font-medium text-white dark:text-white"
         >Stock</label
       >
       <input
         type="number"
         id="editStock"
         name="editStock"
-        [(ngModel)]="producto.stock"
+        [(ngModel)]="producto!.stock"
         placeholder="Ingrese stock del producto..."
         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         readonly
@@ -58,14 +58,14 @@
     <div class="mb-6">
       <label
         for="editPrecio"
-        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        class="block mb-2 text-sm font-medium text-white dark:text-white"
         >Precio</label
       >
       <input
         type="number"
         id="editPrecio"
         name="editPrecio"
-        [(ngModel)]="producto.precio"
+        [(ngModel)]="producto!.precio"
         placeholder="Ingrese el precio del producto..."
         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         required
@@ -75,13 +75,13 @@
     <div class="mb-6">
       <label
         for="marcaSelect"
-        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        class="block mb-2 text-sm font-medium text-white dark:text-white"
         >Seleccionar Marca</label
       >
       <select
         id="marcaSelect"
         name="marcaSelect"
-        [(ngModel)]="producto.id_marca"
+        [(ngModel)]="producto!.id_marca"
         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
       >
         <option value="" disabled selected>Elegir...</option>
@@ -94,13 +94,13 @@
     <div class="mb-6">
       <label
         for="categoriaSelect"
-        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        class="block mb-2 text-sm font-medium text-white dark:text-white"
         >Seleccionar Categoria</label
       >
       <select
         id="categoriaSelect"
         name="categoriaSelect"
-        [(ngModel)]="producto.id_categoria"
+        [(ngModel)]="producto!.id_categoria"
         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
       >
         <option value="" disabled selected>Elegir...</option>
@@ -114,14 +114,14 @@
   <div class="mb-6">
     <label
       for="editDescripcion"
-      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+      class="block mb-2 text-sm font-medium text-white dark:text-white"
       >Descripción</label
     >
 
     <textarea
       id="editDescripcion"
       name="editDescripcion"
-      [(ngModel)]="producto.descripcion"
+      [(ngModel)]="producto!.descripcion"
       rows="2"
       class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
     ></textarea>
@@ -131,7 +131,7 @@
   <div class="mb-6">
     <label
       for="archivo"
-      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+      class="block mb-2 text-sm font-medium text-white dark:text-white"
       >Seleccionar Archivo Principal</label
     >
     <input
@@ -147,7 +147,7 @@
   <div class="mb-6">
     <label
       for="archivo1"
-      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+      class="block mb-2 text-sm font-medium text-white dark:text-white"
       >Seleccionar Archivo</label
     >
     <input
@@ -165,7 +165,7 @@
     @if (producto.imagen_principal !== "") {
     <div class="relative">
       <div
-        class="w-full items-center py-2 px-2 rounded-t-lg text-gray-900 bg-white border-3 border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium text-sm dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+        class="w-full items-center py-2 px-2 rounded-t-lg text-white bg-white border-3 border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium text-sm dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
       >
         <img
           class="w-auto max-w-full rounded-lg"
@@ -184,7 +184,7 @@
     } @for (imagen of producto.imageurl; track $index) {
     <div class="relative">
       <div
-        class="w-full items-center py-2 px-2 rounded-t-lg text-gray-900 bg-white border-3 border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium text-sm dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+        class="w-full items-center py-2 px-2 rounded-t-lg text-white bg-white border-3 border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium text-sm dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
       >
         <img class="w-auto max-w-full rounded-lg" [src]="imagen" alt="" />
       </div>
